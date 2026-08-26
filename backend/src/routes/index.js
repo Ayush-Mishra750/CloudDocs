@@ -16,3 +16,4 @@ router.use('/admin', adminRoutes);
 router.use('/subscriptions', subscriptionRoutes);
 
 export default router;
+

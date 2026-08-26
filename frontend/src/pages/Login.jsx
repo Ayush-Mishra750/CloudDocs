@@ -37,7 +37,7 @@ export const Login = () => {
             <Cloud className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Welcome Back</h2>
-          <p className="text-xs text-slate-500">Sign in to your Storemystuff account</p>
+          <p className="text-xs text-slate-500">Sign in to your CloudDocs account</p>
         </div>
 
         {/* Error Alert Banner */}
@@ -60,8 +60,8 @@ export const Login = () => {
 
           {/* Divider */}
           <div className="relative flex items-center justify-center">
-            <div className="w-full border-t border-slate-200"></div>
-            <span className="bg-white px-3 text-[11px] font-semibold text-slate-400 uppercase tracking-widest relative">
+
+            <span className="bg-white px-1 text-[10px] font-semibold text-slate-400 uppercase tracking-widest relative">
               Or continue with email
             </span>
           </div>

@@ -3,13 +3,10 @@ import env from './config/env.js';
 import logger from './utils/logger.js';
 import { connectDB } from './config/db.js';
 import { initRedis } from './config/redis.js';
-// AI background workers disabled as per configuration
-// import './jobs/workers/aiDocument.worker.js';
-// import './jobs/workers/aiOrganizer.worker.js';
 
 const startServer = async () => {
   try {
-    logger.info(`Initializing CloudDocs AI Backend [${env.NODE_ENV}]...`);
+    logger.info(`Initializing CloudDocs Backend [${env.NODE_ENV}]...`);
 
     // Start Express server
     const server = app.listen(env.PORT, '0.0.0.0', () => {
@@ -21,6 +18,7 @@ const startServer = async () => {
 
     // Connect to MongoDB
     connectDB();
+
 
     // Graceful shutdown handling
     const gracefulShutdown = (signal) => {

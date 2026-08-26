@@ -48,7 +48,7 @@ app.use('/api/v1', apiRoutes);
 // Root route welcome
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to CloudDocs AI API',
+    message: 'Welcome to CloudDocs API',
     version: '1.0.0',
     healthCheck: '/api/v1/health',
   });

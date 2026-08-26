@@ -50,6 +50,7 @@ export const AppRoutes = () => {
           <Route path="settings" element={<Settings />} />
         </Route>
 
+
         {/* Admin Protected Routes */}
         <Route element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />

@@ -14,8 +14,9 @@ The client is built with **React**, **Vite**, and **TailwindCSS**, while the ser
   - [Sharing and Permissions](#sharing-and-permissions)
   - [Settings and Customization](#settings-and-customization)
   - [Admin Dashboard](#admin-dashboard)
-  - [Subscriptions and Billing](#subscriptions-and-billing)
+  - [AI Knowledge Hub (Milestone 10)](#ai-knowledge-hub-milestone-10)
 - [Project Structure](#-project-structure)
+
   - [Frontend (React + Vite + Tailwind)](#frontend---react--vite--tailwind)
   - [Backend (Node + Express + MongoDB + Redis)](#backend---node--express--mongodb--redis)
 - [Screenshot Overview](#-screenshot-overview)
@@ -81,7 +82,15 @@ The client is built with **React**, **Vite**, and **TailwindCSS**, while the ser
 - **Webhook Verification**: Webhook listeners for automated payment status sync and subscription lifecycle management.
 - **Billing History**: Access past transaction invoices and renewal dates inside the dashboard.
 
+### AI Knowledge Hub (Milestone 10)
+- **Cross-Document RAG Search**: Natural language questions across PDF, DOCX, XLSX, TXT, and OCR'd images.
+- **Clickable Citations**: Synthesized answers featuring inline citation markers (`[1]`, `[2]`) linking directly to source file & page.
+- **Self-Hosted Vector Embeddings**: Background ingestion powered by self-hosted embedding model using zero Gemini API quota.
+- **Redis Token Bucket Governor**: Shared rate limiter preventing 429 quota failures under high multi-user traffic.
+- **SSE Real-Time Streaming**: Low-latency Server-Sent Events response streaming with circuit breaker protection.
+
 ---
+
 
 ## 📁 Project Structure
 
@@ -154,7 +163,7 @@ CloudDocs-AI/
 - **Backend**: Node.js, Express.js (ES Modules)
 - **Databases**: MongoDB (Mongoose ODM), Redis (Caching & Sessions)
 - **Cloud Storage & CDN**: AWS S3, AWS CloudFront
-- **External APIs**: Google Drive API, Google OAuth 2.0, GitHub OAuth, Resend API
+- **External APIs**: Google Drive API, Google OAuth 2.0,Resend API
 - **Authentication**: JWT (Signed HTTP-only Cookies), Bcrypt, Resend OTP
 - **Payment Gateway**: Razorpay Subscriptions & Webhooks
 - **Containerization**: Docker, Docker Compose

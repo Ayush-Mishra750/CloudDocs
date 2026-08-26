@@ -188,3 +188,44 @@ export const deleteS3Object = async (s3Key) => {
   }
 };
 
+/**
+ * Retrieve Object Buffer from S3 or local disk fallback
+ */
+export const getS3ObjectBuffer = async (s3Key) => {
+  if (!s3Key) return null;
+
+  const localFileName = s3Key.replace(/\//g, '_');
+  const localFilePath = path.join(uploadsDir, localFileName);
+  if (fs.existsSync(localFilePath)) {
+    return fs.readFileSync(localFilePath);
+  }
+
+  if (!isConfigured || !s3Client) {
+    if (fs.existsSync(localFilePath)) {
+      return fs.readFileSync(localFilePath);
+    }
+    return null;
+  }
+
+  const command = new GetObjectCommand({
+    Bucket: bucketName,
+    Key: s3Key,
+  });
+
+  try {
+    const response = await s3Client.send(command);
+    const streamToBuffer = async (stream) => {
+      const chunks = [];
+      for await (const chunk of stream) {
+        chunks.push(chunk);
+      }
+      return Buffer.concat(chunks);
+    };
+    return await streamToBuffer(response.Body);
+  } catch (error) {
+    logger.error(`Error fetching S3 object buffer for key ${s3Key}: ${error.message}`);
+    throw error;
+  }
+};
+
+

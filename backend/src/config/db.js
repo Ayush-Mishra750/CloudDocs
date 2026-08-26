@@ -62,3 +62,6 @@ mongoose.connection.on('reconnected', () => {
 export const getMongoStatus = () => {
   return mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
 };
+
+export default connectDB;
+

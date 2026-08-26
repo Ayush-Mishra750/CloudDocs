@@ -65,7 +65,7 @@ export const Register = () => {
             <Cloud className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Create Account</h2>
-          <p className="text-xs text-slate-500">Get started with free Storemystuff cloud storage</p>
+          <p className="text-xs text-slate-500">Get started with free CloudDocs cloud storage</p>
         </div>
 
         {/* Error Alert Banner */}
@@ -91,8 +91,8 @@ export const Register = () => {
 
           {/* Divider */}
           <div className="relative flex items-center justify-center">
-            <div className="w-full border-t border-slate-200"></div>
-            <span className="bg-white px-3 text-[11px] font-semibold text-slate-400 uppercase tracking-widest relative">
+
+            <span className="bg-white px-1 text-[10px] font-semibold text-slate-400 uppercase tracking-widest relative">
               Or register with email
             </span>
           </div>
@@ -112,7 +112,7 @@ export const Register = () => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Sahil Khandekar"
+                placeholder="name"
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600 transition-all"
               />
             </div>
@@ -130,7 +130,7 @@ export const Register = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="sahil@example.com"
+                placeholder="xyz@example.com"
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600 transition-all"
               />
             </div>
@@ -210,7 +210,7 @@ export const Register = () => {
             ) : (
               <>
                 <UserPlus className="w-4 h-4" />
-                <span>Create Storemystuff Account</span>
+                <span>Create CloudDocs Account</span>
               </>
             )}
           </button>

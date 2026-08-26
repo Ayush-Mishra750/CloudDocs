@@ -13,6 +13,7 @@ import {
 } from '../utils/s3.js';
 
 
+
 // Helper to format bytes to human readable format (KB, MB, GB)
 const formatBytes = (bytes, decimals = 2) => {
   if (!bytes || bytes === 0) return '0 Bytes';
@@ -135,6 +136,7 @@ export const confirmUpload = async (req, res, next) => {
 
     logger.info(`File created & uploaded to S3: ${file.name} (${formatBytes(file.size)}) by ${user.email}`);
 
+
     res.status(201).json({
       success: true,
       message: 'File metadata saved successfully.',
@@ -216,6 +218,7 @@ export const uploadDirectFile = async (req, res, next) => {
 
     logger.info(`Direct file uploaded successfully: ${file.name} by ${user.email}`);
 
+
     res.status(201).json({
       success: true,
       message: 'File uploaded successfully!',
@@ -290,7 +293,7 @@ export const createFolder = async (req, res, next) => {
  */
 export const getUserFiles = async (req, res, next) => {
   try {
-    const { search, category, isStarred, isTrash, parentFolder } = req.query;
+    const { search, category, isStarred, isTrash, parentFolder, allFiles } = req.query;
 
     const query = { user: req.user._id };
 
@@ -304,11 +307,14 @@ export const getUserFiles = async (req, res, next) => {
       query.isStarred = true;
     }
 
-    if (search) {
+    if (allFiles === 'true') {
+      // Don't filter by parentFolder to return all vault files
+    } else if (search) {
       query.name = { $regex: search, $options: 'i' };
     } else {
       query.parentFolder = parseParentFolder(parentFolder);
     }
+
 
     if (category && category !== 'all') {
       if (category === 'pdf') {

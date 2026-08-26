@@ -22,7 +22,7 @@ export const Layout = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white">
-      {/* Navigation Header - Storemystuff Theme */}
+      {/* Navigation Header - CloudDocs Theme */}
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -32,7 +32,7 @@ export const Layout = () => {
                 <Cloud className="w-5 h-5" />
               </div>
               <span className="font-bold text-xl tracking-tight text-slate-900">
-                CloudDocs <span className="text-blue-600">AI</span>
+                CloudDocs 
               </span>
             </Link>
 

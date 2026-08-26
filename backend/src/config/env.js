@@ -33,11 +33,6 @@ const env = cleanEnv(process.env, {
   AWS_CLOUDFRONT_DOMAIN: str({ default: '' }),
   RAZORPAY_KEY_ID: str({ default: '' }),
   RAZORPAY_KEY_SECRET: str({ default: '' }),
-  GEMINI_API_KEY: str({ default: '' }),
-  GEMINI_MODEL: str({ default: 'gemini-1.5-pro' }),
-  GEMINI_EMBEDDING_MODEL: str({ default: 'models/embedding-001' }),
-  AI_FEATURES_ENABLED: str({ default: 'true' }),
-  AI_MAX_REQUESTS_PER_USER_PER_HOUR: str({ default: '50' }),
 });
 
 export default env;

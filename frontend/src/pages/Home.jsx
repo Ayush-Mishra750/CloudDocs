@@ -7,7 +7,7 @@ export const Home = () => {
 
   return (
     <div className="space-y-8 py-4">
-      {/* Hero Section - Storemystuff Theme */}
+      {/* Hero Section - CloudDocs Theme */}
       <section className="bg-white rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm relative overflow-hidden">
         <div className="max-w-3xl space-y-6">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
@@ -16,7 +16,7 @@ export const Home = () => {
           </div>
 
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
-            Store, Manage & Share Your Files with <span className="text-blue-600">Storemystuff</span>
+            Store, Manage & Share Your Files with <span className="text-blue-600">CloudDocs</span>
           </h1>
 
           <p className="text-base text-slate-600 leading-relaxed">
@@ -70,4 +70,5 @@ export const Home = () => {
     </div>
   );
 };
+
 
