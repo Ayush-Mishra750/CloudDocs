@@ -10,6 +10,7 @@ import {
   generatePresignedDownloadUrl,
   uploadBufferToS3,
   deleteS3Object,
+  getS3ObjectBuffer,
 } from '../utils/s3.js';
 
 
@@ -1314,6 +1315,66 @@ export const importFromGoogleDrive = async (req, res, next) => {
     });
   } catch (error) {
     logger.error(`Google Drive import controller error: ${error.message}`);
+    next(error);
+  }
+};
+
+/**
+ * @desc    Stream raw file content directly to browser for inline previewing
+ * @route   GET /api/v1/files/:id/view
+ * @access  Private / Public (via shareToken or valid file permission)
+ */
+export const streamFileContent = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { shareToken } = req.query;
+
+    let file = null;
+
+    if (req.user) {
+      file = await File.findOne({
+        _id: id,
+        $or: [
+          { user: req.user._id },
+          { 'sharedWith.user': req.user._id },
+          { 'sharedWith.userId': req.user._id },
+          { isPublic: true },
+        ],
+      });
+    }
+
+    if (!file && shareToken) {
+      file = await File.findOne({ shareToken, isPublic: true });
+    }
+
+    if (!file && mongoose.Types.ObjectId.isValid(id)) {
+      file = await File.findOne({ _id: id, isPublic: true });
+    }
+
+    if (!file) {
+      return res.status(404).send('File not found or access denied');
+    }
+
+    if (file.isFolder) {
+      return res.status(400).send('Directories cannot be viewed directly');
+    }
+
+    const buffer = await getS3ObjectBuffer(file.s3Key);
+    if (!buffer) {
+      return res.status(404).send('File content missing on storage server');
+    }
+
+    const mimeType = file.mimeType || 'application/octet-stream';
+    const filename = file.originalName || file.name || 'document';
+
+    res.setHeader('Content-Type', mimeType);
+    res.setHeader('Content-Disposition', `inline; filename="${encodeURIComponent(filename)}"`);
+    res.setHeader('Content-Length', buffer.length);
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+
+    return res.send(buffer);
+  } catch (error) {
+    logger.error(`Error in streamFileContent: ${error.message}`);
     next(error);
   }
 };

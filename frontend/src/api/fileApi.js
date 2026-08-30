@@ -9,6 +9,14 @@ export const getFiles = async (params = {}) => {
 };
 
 /**
+ * Fetch details and download URL for a single file by ID
+ */
+export const getFileByIdApi = async (id) => {
+  const response = await api.get(`/files/${id}`);
+  return response.data;
+};
+
+/**
  * Direct file upload with progress tracking
  */
 export const uploadFile = async (file, onUploadProgress, parentFolder = null) => {

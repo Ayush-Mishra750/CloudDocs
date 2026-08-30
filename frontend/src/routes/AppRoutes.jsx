@@ -7,6 +7,7 @@ import { Register } from '../pages/Register';
 import { VerifyOTP } from '../pages/VerifyOTP';
 import { Dashboard } from '../pages/Dashboard';
 import { SharedFile } from '../pages/SharedFile';
+import { FileViewer } from '../pages/FileViewer';
 import { AdminDashboard } from '../pages/AdminDashboard';
 import { Subscription } from '../pages/Subscription';
 import { ShareDashboard } from '../pages/ShareDashboard';
@@ -22,6 +23,9 @@ import { GuestRoute } from './GuestRoute';
 export const AppRoutes = () => {
   return (
     <Routes>
+      {/* Standalone Full-Page Document / Image Viewer Route */}
+      <Route path="view-file/:fileId" element={<ProtectedRoute><FileViewer /></ProtectedRoute>} />
+
       {/* Standalone Public Shared File Preview Route */}
       <Route path="guest/access/:shareToken" element={<SharedFile />} />
       <Route path="share-preview/:shareToken" element={<SharedFile />} />

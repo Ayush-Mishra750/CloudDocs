@@ -92,8 +92,7 @@ export const SharedWithMe = () => {
   };
 
   const handleOpenFile = (file) => {
-    setImageLoadError(false);
-    setSelectedFile(file);
+    window.open(`/view-file/${file._id}`, '_blank');
   };
 
   if (loading) {
@@ -168,7 +167,8 @@ export const SharedWithMe = () => {
           filteredFiles.map((file) => (
             <div
               key={file._id}
-              className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:shadow-md transition-shadow"
+              onClick={() => handleOpenFile(file)}
+              className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:shadow-md transition-shadow cursor-pointer"
             >
               <div className="flex items-center space-x-3.5">
                 <div className="w-10 h-10 rounded-2xl bg-blue-50/70 flex items-center justify-center shrink-0">

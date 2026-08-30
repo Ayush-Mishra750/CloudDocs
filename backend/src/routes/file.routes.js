@@ -23,13 +23,15 @@ import {
   updateCollaboratorRole,
   getRegisteredUsersForInvite,
   importFromGoogleDrive,
+  streamFileContent,
 } from '../controllers/file.controller.js';
 import { protect } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
-// Public route: Access shared file via shareToken (No auth required)
+// Public routes: Access shared file via shareToken or view stream (No auth required)
 router.get('/share/:shareToken', getSharedFile);
+router.get('/public-view/:shareToken', streamFileContent);
 
 // Multer in-memory storage config (max 100MB per file for fallback upload)
 const storage = multer.memoryStorage();
@@ -54,6 +56,7 @@ router.post('/import-google-drive', importFromGoogleDrive);
 router.post('/folder', createFolder);
 router.get('/', getUserFiles);
 router.get('/:id', getFileById);
+router.get('/:id/view', streamFileContent);
 router.post('/:id/share', createOrUpdateShareLink);
 router.delete('/:id/share', revokeShareLink);
 router.post('/:id/invite', inviteCollaborator);

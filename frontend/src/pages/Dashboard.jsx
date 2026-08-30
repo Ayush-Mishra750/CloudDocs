@@ -50,6 +50,7 @@ import {
   Info,
   MoreVertical,
   ShieldCheck,
+  ExternalLink,
 } from 'lucide-react';
 
 export const Dashboard = () => {
@@ -1234,10 +1235,8 @@ export const Dashboard = () => {
           {files.map((file) => (
             <div
               key={file._id}
-              onClick={() => file.isFolder && handleOpenFolder(file)}
-              className={`bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between group relative ${
-                file.isFolder ? 'cursor-pointer' : ''
-              }`}
+              onClick={() => (file.isFolder ? handleOpenFolder(file) : window.open(`/view-file/${file._id}`, '_blank'))}
+              className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between group relative cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -1286,6 +1285,19 @@ export const Dashboard = () => {
                           <Info className="w-4 h-4 text-slate-400" />
                           <span>Details</span>
                         </button>
+
+                        {!file.isFolder && (
+                          <button
+                            onClick={() => {
+                              setActiveMenuId(null);
+                              window.open(`/view-file/${file._id}`, '_blank');
+                            }}
+                            className="w-full text-left px-3.5 py-2 hover:bg-slate-50 flex items-center gap-2.5 text-blue-600 font-semibold"
+                          >
+                            <ExternalLink className="w-4 h-4 text-blue-500" />
+                            <span>Open in New Page</span>
+                          </button>
+                        )}
 
                         {!file.isFolder && file.downloadUrl && (
                           <a
@@ -1383,18 +1395,33 @@ export const Dashboard = () => {
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                ) : !file.isFolder && file.downloadUrl ? (
-                  <a
-                    href={file.downloadUrl}
-                    download={file.name}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="flex items-center gap-1.5 text-slate-600 hover:text-blue-600 font-semibold transition-colors"
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    <span>Download</span>
-                  </a>
+                ) : !file.isFolder ? (
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(`/view-file/${file._id}`, '_blank');
+                      }}
+                      className="flex items-center gap-1 text-blue-600 hover:text-blue-700 font-bold transition-colors"
+                      title="Open in new tab"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Open</span>
+                    </button>
+                    {file.downloadUrl && (
+                      <a
+                        href={file.downloadUrl}
+                        download={file.name}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex items-center gap-1 text-slate-500 hover:text-slate-700 font-semibold transition-colors"
+                        title="Download file"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 ) : null}
               </div>
             </div>
@@ -1417,10 +1444,8 @@ export const Dashboard = () => {
               {files.map((file) => (
                 <tr
                   key={file._id}
-                  onClick={() => file.isFolder && handleOpenFolder(file)}
-                  className={`hover:bg-slate-50/80 transition-colors ${
-                    file.isFolder ? 'cursor-pointer' : ''
-                  }`}
+                  onClick={() => (file.isFolder ? handleOpenFolder(file) : window.open(`/view-file/${file._id}`, '_blank'))}
+                  className="hover:bg-slate-50/80 transition-colors cursor-pointer"
                 >
                   <td className="py-3 px-4 flex items-center space-x-3">
                     {renderFileIcon(file.mimeType, file.isFolder)}
@@ -1464,6 +1489,18 @@ export const Dashboard = () => {
                         >
                           <Info className="w-4 h-4" />
                         </button>
+                        {!file.isFolder && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(`/view-file/${file._id}`, '_blank');
+                            }}
+                            className="p-1.5 rounded text-blue-600 hover:bg-blue-50"
+                            title="Open into new page"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </button>
+                        )}
                         <button
                           onClick={(e) => handleOpenShareModal(e, file)}
                           className={`p-1.5 rounded ${

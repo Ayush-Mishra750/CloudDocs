@@ -3,6 +3,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Cloud, Share2, Video, LogOut, ShieldCheck, AlertCircle, Settings as SettingsIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { Footer } from './Footer';
 
 export const Layout = () => {
   const { user, refreshUser, logoutUser } = useAuth();
@@ -27,12 +28,12 @@ export const Layout = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Brand Logo */}
-            <Link to={user ? "/dashboard" : "/"} className="flex items-center space-x-2.5 group">
+            <Link to={"/"} className="flex items-center space-x-2.5 group">
               <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:bg-blue-700 transition-colors">
                 <Cloud className="w-5 h-5" />
               </div>
               <span className="font-bold text-xl tracking-tight text-slate-900">
-                CloudDocs 
+                CloudDocs
               </span>
             </Link>
 

@@ -15,6 +15,7 @@ import {
   AlertCircle,
   ShieldCheck,
   HardDrive,
+  ExternalLink,
 } from 'lucide-react';
 
 export const SharedFile = () => {
@@ -184,13 +185,21 @@ export const SharedFile = () => {
             </div>
 
             {/* Image Preview if image */}
-            {fileData?.mimeType?.startsWith('image/') && fileData?.downloadUrl && (
-              <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 max-h-72 flex items-center justify-center">
+            {fileData?.mimeType?.startsWith('image/') && (
+              <div
+                onClick={() => window.open(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1'}/files/public-view/${fileData.shareToken}`, '_blank')}
+                className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 max-h-72 flex items-center justify-center cursor-pointer group relative"
+                title="Click to open image in new page"
+              >
                 <img
-                  src={fileData.downloadUrl}
+                  src={`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1'}/files/public-view/${fileData.shareToken}`}
                   alt={fileData.name}
-                  className="max-h-72 object-contain w-full"
+                  className="max-h-72 object-contain w-full group-hover:scale-105 transition-transform"
                 />
+                <div className="absolute top-3 right-3 bg-slate-950/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg border border-slate-800 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ExternalLink className="w-3 h-3 text-blue-400" />
+                  <span>Open New Page</span>
+                </div>
               </div>
             )}
 
@@ -209,49 +218,74 @@ export const SharedFile = () => {
                   Files inside directory ({fileData.folderFiles.length})
                 </h3>
                 <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
-                  {fileData.folderFiles.map((child) => (
-                    <div
-                      key={child._id}
-                      className="flex items-center justify-between p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 transition-all"
-                    >
-                      <div className="flex items-center space-x-3 truncate">
-                        {getFileIcon(child.mimeType)}
-                        <div className="truncate">
-                          <p className="text-sm font-semibold text-white truncate" title={child.name}>
-                            {child.name}
-                          </p>
-                          <p className="text-[11px] text-slate-400">{child.formattedSize}</p>
+                  {fileData.folderFiles.map((child) => {
+                    const childStreamUrl = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1'}/files/${child._id}/view?shareToken=${fileData.shareToken}`;
+                    return (
+                      <div
+                        key={child._id}
+                        className="flex items-center justify-between p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 transition-all"
+                      >
+                        <div
+                          className="flex items-center space-x-3 truncate cursor-pointer group"
+                          onClick={() => window.open(childStreamUrl, '_blank')}
+                        >
+                          {getFileIcon(child.mimeType)}
+                          <div className="truncate">
+                            <p className="text-sm font-semibold text-white truncate group-hover:text-blue-400 transition-colors" title={child.name}>
+                              {child.name}
+                            </p>
+                            <p className="text-[11px] text-slate-400">{child.formattedSize}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <a
+                            href={childStreamUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5 transition-all"
+                            title="Open in new tab"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+                            <span>Open</span>
+                          </a>
+                          {child.downloadUrl ? (
+                            <a
+                              href={child.downloadUrl}
+                              download={child.name}
+                              className="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all"
+                            >
+                              <Download className="w-3.5 h-3.5" />
+                              <span>Download</span>
+                            </a>
+                          ) : null}
                         </div>
                       </div>
-                      {child.downloadUrl ? (
-                        <a
-                          href={child.downloadUrl}
-                          download={child.name}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all"
-                        >
-                          <Download className="w-3.5 h-3.5" />
-                          <span>Download</span>
-                        </a>
-                      ) : (
-                        <span className="text-[10px] text-slate-500">No Download</span>
-                      )}
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
-            ) : fileData?.allowDownload && fileData?.downloadUrl ? (
-              <a
-                href={fileData.downloadUrl}
-                download={fileData.name}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-blue-600/25 flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
-              >
-                <Download className="w-5 h-5" />
-                <span>Download File ({fileData.formattedSize})</span>
-              </a>
+            ) : fileData ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a
+                  href={`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1'}/files/public-view/${fileData.shareToken}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2 transition-all"
+                >
+                  <ExternalLink className="w-4 h-4 text-blue-400" />
+                  <span>Open in New Page</span>
+                </a>
+                {fileData.downloadUrl ? (
+                  <a
+                    href={fileData.downloadUrl}
+                    download={fileData.name}
+                    className="py-3.5 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs shadow-xl shadow-blue-600/25 flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download File ({fileData.formattedSize})</span>
+                  </a>
+                ) : null}
+              </div>
             ) : (
               <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center text-xs text-slate-400">
                 Direct file download is disabled by the file owner.
