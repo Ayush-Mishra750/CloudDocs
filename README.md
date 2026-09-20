@@ -1,4 +1,4 @@
-# ☁️ CloudDocs — storemystuff.cloud
+# ☁️ CloudDocs — Cloud Storage Platform
 
 A full-stack, enterprise-grade cloud storage application that allows users to upload, manage, and share their files securely. It includes a subscription-based storage system powered by Razorpay, enabling users to upgrade their storage plans smoothly.
 
