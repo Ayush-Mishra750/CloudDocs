@@ -140,12 +140,45 @@ CloudDocs-AI/
 ## 🖼️ Screenshot Overview
 
 - **Login & Register**: Standard Email/Password login, Google OAuth, and Resend OTP verification.
+  <img width="1884" height="908" alt="Screenshot 2026-07-31 101443" src="https://github.com/user-attachments/assets/8fb2df1c-8faa-404a-81f7-648f5e2a1774" />
+ <img width="1886" height="815" alt="Screenshot 2026-07-31 100557" src="https://github.com/user-attachments/assets/11599030-a93a-49ca-9aea-3b646794ba2c" />
+<img width="1814" height="867" alt="Screenshot 2026-07-31 101014" src="https://github.com/user-attachments/assets/9329c23c-b45d-44b7-8fe8-1ed606812af2" />
+
 - **HomePage / Dashboard**: File grid & list view, storage quota bar, upload modal, search & filter bar.
+  <img width="1894" height="870" alt="Screenshot 2026-07-31 101142" src="https://github.com/user-attachments/assets/b8b72f68-ba00-4c58-a9b0-ad82c60715ab" />
+<img width="1845" height="865" alt="Screenshot 2026-07-31 101842" src="https://github.com/user-attachments/assets/7f9c1053-5639-4d9e-a0ec-c9982ff446fc" />
+<img width="1837" height="853" alt="Screenshot 2026-07-31 101948" src="https://github.com/user-attachments/assets/5e92d131-400c-4ebb-ba25-8b13c6ce0498" />
+<img width="1838" height="817" alt="Screenshot 2026-07-31 102023" src="https://github.com/user-attachments/assets/e123f9ae-3452-42fa-b266-24ee5ca7582b" />
+
 - **Settings**: Profile update, storage usage breakdown, password update, and session controls.
+  <img width="1790" height="818" alt="Screenshot 2026-07-31 102254" src="https://github.com/user-attachments/assets/57691d5f-0ca6-4194-9628-bd2f4a45e8a9" />
+<img width="1838" height="851" alt="Screenshot 2026-07-31 102320" src="https://github.com/user-attachments/assets/d1f8181b-9b31-4167-821c-cc4523ddafaa" />
+<img width="1863" height="874" alt="Screenshot 2026-07-31 102351" src="https://github.com/user-attachments/assets/5281bf1f-ef50-4b77-aacc-f03666e3f09b" />
+<img width="1823" height="843" alt="Screenshot 2026-07-31 102412" src="https://github.com/user-attachments/assets/4e79c802-2b75-41f0-9f84-007caf5e4ba4" />
+
 - **Share**: Public link generator, email-based sharing modal, permission toggle, and shared files dashboard.
+  <img width="1798" height="869" alt="Screenshot 2026-07-31 102645" src="https://github.com/user-attachments/assets/ebbeb2d7-aed7-4f5a-ac7f-21ecc0dfaa8b" />
+<img width="1665" height="699" alt="Screenshot 2026-07-31 102920" src="https://github.com/user-attachments/assets/1ada1f32-5fbc-4228-94f0-662147d29499" />
+
+
 - **Admin Dashboard**: System telemetry, user management table, user inspection modal, soft/hard deletion.
+  <img width="1780" height="903" alt="Screenshot 2026-07-31 103118" src="https://github.com/user-attachments/assets/e12b4713-a431-40d3-a954-6a98020a098f" />
+  <img width="1770" height="894" alt="Screenshot 2026-07-31 103210" src="https://github.com/user-attachments/assets/a0b11f70-f9b0-4da2-b212-d546c3cf26ca" />
+<img width="1399" height="654" alt="Screenshot 2026-07-31 103312" src="https://github.com/user-attachments/assets/f9d53a3b-01ac-4074-8ff3-550b5ed0cfa7" />
+<img width="1798" height="853" alt="Screenshot 2026-07-31 103412" src="https://github.com/user-attachments/assets/f04e6d81-47f0-4a87-aa5d-fa1932c4efc8" />
+
 - **Import from Drive**: Google Drive file selection picker and automated import status tracking.
+  <img width="1830" height="870" alt="Screenshot 2026-07-31 103513" src="https://github.com/user-attachments/assets/b1add58b-8d3b-47bc-8c22-d51fe2128112" />
+<img width="1595" height="591" alt="Screenshot 2026-07-31 103554" src="https://github.com/user-attachments/assets/186b46af-fccb-4cdf-a03d-0e3e11f97fed" />
+<img width="1835" height="832" alt="Screenshot 2026-07-31 104245" src="https://github.com/user-attachments/assets/16489e07-546b-439d-b89f-c9cb58be2010" />
+
 - **Subscriptions (Razorpay)**: Plan selector modal, Razorpay payment popup, active plan status, invoice links.
+  <img width="1875" height="868" alt="Screenshot 2026-07-31 104549" src="https://github.com/user-attachments/assets/5caa4b24-9dec-4c59-86bc-1d746186e1ea" />
+<img width="1839" height="841" alt="Screenshot 2026-07-31 104615" src="https://github.com/user-attachments/assets/ccfa52d7-b199-4326-87f7-c322b3dc9ced" />
+<img width="1515" height="876" alt="Screenshot 2026-07-31 104650" src="https://github.com/user-attachments/assets/22f45a07-b741-404c-9b80-18b8d31e052c" />
+<img width="1553" height="793" alt="Screenshot 2026-07-31 104752" src="https://github.com/user-attachments/assets/d985a470-d47c-4d37-959b-bef7a89dbf98" />
+<img width="1755" height="834" alt="Screenshot 2026-07-31 104853" src="https://github.com/user-attachments/assets/a8ca437d-f750-4df7-8465-dc8ad01b463f" />
+
 
 ---
 
